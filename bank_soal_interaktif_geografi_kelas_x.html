@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bank Soal Interaktif Geografi Kelas X (45 Soal)</title>
+  <style>
+    :root {
+      --bg-main: #0f172a;
+      --bg-card: #1e293b;
+      --bg-card-hover: #334155;
+      --border-color: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --success: #10b981;
+      --success-bg: rgba(16, 185, 129, 0.15);
+      --danger: #ef4444;
+      --danger-bg: rgba(239, 68, 68, 0.15);
+      --warning: #f59e0b;
+      --accent: #8b5cf6;
+      --kisi-color: #38bdf8;
+      --pengayaan-color: #a855f7;
+      --radius: 12px;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border-bottom: 1px solid var(--border-color);
+      padding: 24px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .header-title-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .header-title-box h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-title-box h1 span {
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Dashboard Stats Bar */
+    .dashboard-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+    }
+
+    .stat-card {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid var(--border-color);
+      padding: 12px 16px;
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .stat-val {
+      font-size: 1.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+    }
+
+    .stat-score { color: var(--warning); }
+    .stat-answered { color: var(--primary); }
+    .stat-correct { color: var(--success); }
+    .stat-wrong { color: var(--danger); }
+
+    .main-layout {
+      max-width: 1200px;
+      margin: 24px auto;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .main-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Sidebar controls & Grid Nav */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .panel-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 14px;
+      color: var(--text-main);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Filter Controls */
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .filter-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .btn-filter {
+      background: #0f172a;
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+      padding: 6px 12px;
+      font-size: 0.82rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-filter:hover, .btn-filter.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    /* Number Grid Navigation */
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      max-height: 380px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .nav-grid::-webkit-scrollbar {
+      width: 5px;
+    }
+    .nav-grid::-webkit-scrollbar-thumb {
+      background: var(--border-color);
+      border-radius: 10px;
+    }
+
+    .nav-btn {
+      aspect-ratio: 1;
+      background: #0f172a;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .nav-btn:hover {
+      border-color: var(--primary);
+      color: var(--text-main);
+    }
+
+    .nav-btn.answered {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .nav-btn.correct {
+      background: var(--success);
+      color: white;
+      border-color: var(--success);
+    }
+
+    .nav-btn.incorrect {
+      background: var(--danger);
+      color: white;
+      border-color: var(--danger);
+    }
+
+    .nav-btn.active-current {
+      outline: 2px solid white;
+      outline-offset: 2px;
+    }
+
+    /* Global Action Buttons */
+    .action-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 18px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      width: 100%;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    .btn-primary:hover { background: var(--primary-hover); }
+
+    .btn-success {
+      background: var(--success);
+      color: white;
+    }
+    .btn-success:hover { filter: brightness(1.1); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+    }
+    .btn-secondary:hover {
+      background: var(--bg-card-hover);
+    }
+
+    .btn-danger-outline {
+      background: transparent;
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.4);
+    }
+    .btn-danger-outline:hover {
+      background: var(--danger-bg);
+    }
+
+    /* Main Content Questions List */
+    .content-area {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .question-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      transition: border-color 0.2s ease;
+      scroll-margin-top: 140px;
+    }
+
+    .question-card:hover {
+      border-color: rgba(59, 130, 246, 0.4);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .badges {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-number {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-main);
+    }
+
+    .badge-chapter {
+      background: rgba(139, 92, 246, 0.2);
+      color: #c084fc;
+      border: 1px solid rgba(139, 92, 246, 0.4);
+    }
+
+    .badge-kisi {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--kisi-color);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .badge-pengayaan {
+      background: rgba(168, 85, 247, 0.15);
+      color: var(--pengayaan-color);
+      border: 1px solid rgba(168, 85, 247, 0.3);
+    }
+
+    .card-status {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .card-status.correct { color: var(--success); }
+    .card-status.incorrect { color: var(--danger); }
+    .card-status.answered { color: var(--primary); }
+    .card-status.unanswered { color: var(--text-muted); }
+
+    .question-text {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--text-main);
+      margin-bottom: 20px;
+      white-space: pre-line;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .option-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 16px;
+      background: #0f172a;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .option-item:hover {
+      background: #1a233a;
+      border-color: rgba(59, 130, 246, 0.5);
+    }
+
+    .option-item input[type="radio"] {
+      margin-top: 3px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .option-key {
+      font-weight: 700;
+      color: var(--primary);
+      min-width: 20px;
+    }
+
+    .option-text {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      flex: 1;
+    }
+
+    /* Option states after checking */
+    .option-item.state-correct {
+      background: var(--success-bg) !important;
+      border-color: var(--success) !important;
+    }
+    .option-item.state-correct .option-key,
+    .option-item.state-correct .option-text {
+      color: #34d399 !important;
+      font-weight: 600;
+    }
+
+    .option-item.state-wrong {
+      background: var(--danger-bg) !important;
+      border-color: var(--danger) !important;
+    }
+    .option-item.state-wrong .option-key,
+    .option-item.state-wrong .option-text {
+      color: #f87171 !important;
+      font-weight: 600;
+    }
+
+    /* Card Controls */
+    .card-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .card-actions .btn {
+      width: auto;
+      padding: 8px 16px;
+      font-size: 0.85rem;
+    }
+
+    /* Explanation Box */
+    .explanation-box {
+      margin-top: 18px;
+      padding: 16px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--primary);
+      border-radius: 8px;
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .explanation-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .explanation-body {
+      font-size: 0.92rem;
+      color: #cbd5e1;
+    }
+
+    /* Summary Modal & Analysis */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .modal-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      max-width: 650px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      animation: scaleUp 0.3s ease;
+    }
+
+    @keyframes scaleUp {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .score-circle {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+    }
+
+    .score-circle-num {
+      font-size: 2rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .score-circle-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    .analysis-section {
+      margin-top: 20px;
+    }
+
+    .analysis-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 6px;
+    }
+
+    .chapter-bar-item {
+      margin-bottom: 12px;
+    }
+
+    .chapter-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+    }
+
+    .progress-bg {
+      height: 8px;
+      background: #0f172a;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 4px;
+      transition: width 0.5s ease;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-muted);
+    }
+
+    /* Custom Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--primary);
+      color: var(--text-main);
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      z-index: 2000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Header & Dashboard -->
+  <header>
+    <div class="header-container">
+      <div class="header-title-box">
+        <h1>🌏 Bank Soal Interaktif <span>Geografi Kelas X</span></h1>
+        <span style="font-size: 0.85rem; color: var(--text-muted);">Kurikulum Merdeka (Fase E) • 45 Soal</span>
+      </div>
+
+      <!-- Real-Time Score Dashboard -->
+      <div class="dashboard-bar">
+        <div class="stat-card">
+          <div class="stat-val stat-answered" id="stat-answered">0 / 45</div>
+          <div class="stat-label">Terjawab</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val stat-correct" id="stat-correct">0</div>
+          <div class="stat-label">Dicek Benar</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val stat-wrong" id="stat-wrong">0</div>
+          <div class="stat-label">Dicek Salah</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val stat-score" id="stat-score">0.0</div>
+          <div class="stat-label">Skalasi Skor (0-100)</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Grid Layout -->
+  <div class="main-layout">
+    
+    <!-- Left Sidebar: Controls, Filters & Navigation Grid -->
+    <aside class="sidebar">
+      
+      <!-- Global Actions -->
+      <div class="panel">
+        <div class="panel-title">⚡ Akses Cepat</div>
+        <div class="action-buttons">
+          <button class="btn btn-success" onclick="checkAllAnswers()">✓ Cek Semua Jawaban</button>
+          <button class="btn btn-secondary" onclick="shuffleQuestionsAndOptions()">🔀 Acak Soal & Opsi</button>
+          <button class="btn btn-danger-outline" onclick="confirmResetAll()">↺ Reset Semua Jawaban</button>
+        </div>
+      </div>
+
+      <!-- Filters Panel -->
+      <div class="panel">
+        <div class="panel-title">🎯 Filter Soal</div>
+        <div class="filter-group">
+          <div class="filter-label">Kategori Soal</div>
+          <div class="filter-buttons">
+            <button class="btn-filter active" onclick="setFilter('package', 'all', this)">Semua (45)</button>
+            <button class="btn-filter" onclick="setFilter('package', 'kisi', this)">Kisi-Kisi (1-30)</button>
+            <button class="btn-filter" onclick="setFilter('package', 'pengayaan', this)">Pengayaan (31-45)</button>
+          </div>
+        </div>
+        <div class="filter-group" style="margin-top: 14px;">
+          <div class="filter-label">Materi Bab</div>
+          <div class="filter-buttons">
+            <button class="btn-filter active" onclick="setFilter('chapter', 'all', this)">Semua Bab</button>
+            <button class="btn-filter" onclick="setFilter('chapter', 'Dasar Geografi', this)">Dasar Geografi</button>
+            <button class="btn-filter" onclick="setFilter('chapter', 'Peta & Pemetaan', this)">Peta & Pemetaan</button>
+            <button class="btn-filter" onclick="setFilter('chapter', 'Penginderaan Jauh', this)">Penginderaan Jauh</button>
+            <button class="btn-filter" onclick="setFilter('chapter', 'SIG', this)">SIG</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Grid -->
+      <div class="panel">
+        <div class="panel-title">
+          <span>📌 Lembar Jawab</span>
+          <span style="font-size: 0.75rem; color: var(--text-muted);" id="grid-count">45 Soal</span>
+        </div>
+        <div class="nav-grid" id="nav-grid">
+          <!-- Dynamically populated 1 to 45 -->
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- Right Area: Question List Cards -->
+    <main class="content-area" id="questions-container">
+      <!-- Question Cards dynamically generated -->
+    </main>
+
+  </div>
+
+  <!-- Result / Chapter Analysis Modal -->
+  <div class="modal-overlay" id="result-modal">
+    <div class="modal-card">
+      <div class="modal-title">📊 Hasil & Analisis Penguasaan Materi</div>
+      
+      <div class="score-circle">
+        <div class="score-circle-num" id="modal-score-num">0</div>
+        <div class="score-circle-label">NILAI AKHIR</div>
+      </div>
+
+      <div style="display: flex; justify-content: space-around; text-align: center; margin-bottom: 20px;">
+        <div>
+          <div style="font-size: 1.2rem; font-weight: 700; color: var(--success);" id="modal-correct">0</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted);">Benar</div>
+        </div>
+        <div>
+          <div style="font-size: 1.2rem; font-weight: 700; color: var(--danger);" id="modal-wrong">0</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted);">Salah</div>
+        </div>
+        <div>
+          <div style="font-size: 1.2rem; font-weight: 700; color: var(--text-muted);" id="modal-unanswered">0</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted);">Belum Dijawab</div>
+        </div>
+      </div>
+
+      <div class="analysis-section">
+        <div class="analysis-title">Analisis Ketercapaian Per Bab</div>
+        <div id="chapter-analysis-list">
+          <!-- Dynamically filled chapter progress -->
+        </div>
+      </div>
+
+      <div style="margin-top: 24px; display: flex; gap: 10px;">
+        <button class="btn btn-primary" onclick="closeModal()">Tutup Modal Analisis</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast-msg">Notifikasi</div>
+
+  <!-- JAVASCRIPT LOGIC & COMPLETE DATA -->
+  <script>
+    // COMPLETE 45 QUESTIONS DATA (100% UNABRIDGED)
+    const RAW_QUESTIONS = [
+      {
+        id: 1,
+        chapter: "Dasar Geografi",
+        tag: "Kisi-Kisi #1",
+        question: "Istilah geografi diperkenalkan pertama kali oleh ilmuwan Yunani Kuno, Eratosthenes, dalam karyanya Geographika. Secara etimologis, gabungan kata geo dan graphein memiliki makna dasar sebagai...",
+        options: {
+          A: "pencatatan tentang persebaran flora dan fauna",
+          B: "penggambaran atau penulisan mengenai bumi",
+          C: "pengukuran luas wilayah dan batas administrasi negara",
+          D: "pengamatan terhadap pergerakan benda-benda langit",
+          E: "penyelidikan tentang struktur batuan penyusun kerak bumi"
+        },
+        answer: "B",
+        explanation: "Secara etimologis dari bahasa Yunani Kuno, 'geo' berarti bumi dan 'graphein' berarti tulisan, lukisan, atau penggambaran. Jadi, geografi bermakna penggambaran atau penulisan mengenai bumi."
+      },
+      {
+        id: 2,
+        chapter: "Dasar Geografi",
+        tag: "Kisi-Kisi #2",
+        question: "Menurut R. Bintarto, geografi merupakan ilmu pengetahuan yang mencitrakan, menerangkan sifat-sifat bumi, menganalisis gejala-gejala alam dan penduduk, serta mempelajari corak yang khas mengenai kehidupan dan berusaha mencari fungsi dari unsur-unsur bumi dalam ruang dan waktu. Berdasarkan definisi tersebut, fokus utama kajian geografi adalah...",
+        options: {
+          A: "sejarah terbentuknya tata surya dan sistem galaksi",
+          B: "proses reaksi kimia dalam pembentukan mineral tambang",
+          C: "hubungan timbal balik antara gejala alam dan manusia dalam konteks ruang dan waktu",
+          D: "sistem pemerintahan dan hukum adat yang berlaku di suatu negara",
+          E: "perkembangan teknologi informasi dalam komunikasi global"
+        },
+        answer: "C",
+        explanation: "Definisi R. Bintarto menekankan pada interaksi dan hubungan timbal balik (sebab-akibat) antara gejala fisik alam dan kehidupan manusia (penduduk) dalam dimensi ruang dan waktu."
+      },
+      {
+        id: 3,
+        chapter: "Dasar Geografi",
+        tag: "Kisi-Kisi #3",
+        question: "Kajian mengenai dinamika lapisan atmosfer, persebaran jenis tanah, siklus hidrologi, serta bentuk-bentuk permukaan bumi dikelompokkan ke dalam cabang geografi...",
+        options: {
+          A: "sosial",
+          B: "fisik",
+          C: "regional",
+          D: "teknis",
+          E: "ekonomi"
+        },
+        answer: "B",
+        explanation: "Geografi fisik mempelajari fenomena alam atau komponen fisik permukaan bumi yang meliputi atmosfer, litosfer (tanah dan batuan), hidrosfer, dan biosfer."
+      },
+      {
+        id: 4,
+        chapter: "Dasar Geografi",
+        tag: "Kisi-Kisi #4",
+        question: "Seorang peneliti mengkaji fenomena tanah longsor di kawasan perbukitan dengan menelaah persebaran lokasi rawan, keterkaitan curah hujan dengan kemiringan lereng, serta dampaknya terhadap permukiman warga. Dalam kajian tersebut, yang berperan sebagai objek formal geografi adalah...",
+        options: {
+          A: "lapisan litosfer dan atmosfer yang memicu terjadinya longsor",
+          B: "permukiman penduduk yang terdampak bencana alam",
+          C: "cara pandang keruangan, kelingkungan, dan kewilayahan dalam menganalisis longsor",
+          D: "curah hujan tahunan dan struktur batuan di lereng bukit",
+          E: "data statistik jumlah kerugian material akibat bencana"
+        },
+        answer: "C",
+        explanation: "Objek formal geografi adalah metode atau cara pandang khas geografi dalam mengkaji suatu fenomena, yakni sudut pandang keruangan (spasial), kelingkungan (ekologi), dan kewilayahan (kompleks wilayah)."
+      },
+      {
+        id: 5,
+        chapter: "Dasar Geografi",
+        tag: "Kisi-Kisi #5",
+        question: "Masyarakat di kawasan dataran tinggi Dieng memiliki tradisi upacara adat potong rambut gimbal serta pola permukiman mengelompok mengikuti lembah pegunungan. Fenomena tersebut dalam studi geografi termasuk kajian aspek...",
+        options: {
+          A: "topologi",
+          B: "nonbiotik",
+          C: "biotik",
+          D: "budaya",
+          E: "astronomis"
+        },
+        answer: "D",
+        explanation: "Tradisi adat istiadat dan pola permukiman manusia merupakan bagian dari aspek nonfisik/sosial, khususnya sub-aspek budaya dan sosial."
+      },
+      {
+        id: 6,
+        chapter: "Dasar Geografi",
+        tag: "Kisi-Kisi #6",
+        question: "Kajian mengenai tingkat kesuburan tanah vulkanik, curah hujan tahunan, serta debit aliran sungai di Daerah Aliran Sungai (DAS) Brantas termasuk dalam aspek geografi...",
+        options: {
+          A: "biotik",
+          B: "nonbiotik",
+          C: "topologi",
+          D: "ekonomi",
+          E: "politik"
+        },
+        answer: "B",
+        explanation: "Kesuburan tanah, curah hujan, dan debit air sungai adalah unsur fisik benda mati (abiotik/nonbiotik) yang memengaruhi kehidupan di permukaan bumi."
+      },
+      {
+        id: 7,
+        chapter: "Dasar Geografi",
+        tag: "Kisi-Kisi #7",
+        question: "Peserta didik kelas X melakukan kunjungan lapangan ke kawasan pesisir untuk mengamati secara langsung kondisi abrasi pantai, mengukur lebar sempadan pantai, dan mencatat jenis vegetasi bakau yang tumbuh di lokasi tersebut. Keterampilan dasar geografi yang sedang diterapkan adalah...",
+        options: {
+          A: "observasi",
+          B: "klasifikasi",
+          C: "pemetaan",
+          D: "generalisasi",
+          E: "proyeksi"
+        },
+        answer: "A",
+        explanation: "Kegiatan mengamati secara langsung objek atau fenomena geografis di lapangan serta mencatat dan mengukur datanya merupakan keterampilan dasar observasi."
+      },
+      {
+        id: 8,
+        chapter: "Peta & Pemetaan",
+        tag: "Kisi-Kisi #8",
+        question: "Pada sebuah peta Provinsi Bali ditampilkan peta kecil berukuran lebih luas yang menunjukkan posisi Pulau Bali terhadap Kepulauan Nusa Tenggara dan Pulau Jawa. Komponen peta tersebut dinamakan...",
+        options: {
+          A: "legenda",
+          B: "skala grafis",
+          C: "inset",
+          D: "orientasi",
+          E: "garis astronomis"
+        },
+        answer: "C",
+        explanation: "Inset adalah peta berukuran kecil yang disisipkan pada peta utama untuk menunjukkan lokasi relatif wilayah yang dipetakan terhadap wilayah sekitarnya yang lebih luas."
+      },
+      {
+        id: 9,
+        chapter: "SIG",
+        tag: "Kisi-Kisi #9",
+        question: "Sistem Informasi Geografis (SIG) bekerja secara terpadu melalui beberapa komponen utama. Komponen SIG yang berfungsi mengoperasikan perangkat lunak, mengolah data spasial, serta melakukan analisis keruangan untuk pengambilan keputusan adalah...",
+        options: {
+          A: "perangkat keras (hardware)",
+          B: "data atribut (tabular)",
+          C: "manusia (brainware)",
+          D: "wahana satelit",
+          E: "sensor fotografik"
+        },
+        answer: "C",
+        explanation: "Manusia (brainware/user) merupakan komponen pengendali utama dalam SIG yang bertugas mengoperasikan perangkat keras dan lunak, menganalisis data, serta mengambil keputusan."
+      },
+      {
+        id: 10,
+        chapter: "Peta & Pemetaan",
+        tag: "Kisi-Kisi #10",
+        question: "Ilmu dan seni untuk menggambarkan permukaan bumi yang melengkung ke dalam bidang datar menggunakan skala dan sistem proyeksi tertentu disebut...",
+        options: {
+          A: "penginderaan jauh",
+          B: "kartografi",
+          C: "fotogrametri",
+          D: "meteorologi",
+          E: "geomorfologi"
+        },
+        answer: "B",
+        explanation: "Kartografi adalah ilmu, seni, dan teknik pembuatan peta untuk merepresentasikan permukaan bumi yang melengkung ke atas bidang datar."
+      },
+      {
+        id: 11,
+        chapter: "Dasar Geografi",
+        tag: "Kisi-Kisi #11",
+        question: "Indonesia terletak di antara Benua Asia dan Benua Australia serta diapit oleh Samudra Hindia dan Samudra Pasifik sehingga menjadi jalur persilangan perdagangan internasional. Posisi tersebut menunjukkan konsep esensial geografi berupa...",
+        options: {
+          A: "lokasi absolut",
+          B: "lokasi relatif",
+          C: "jarak mutlak",
+          D: "morfologi",
+          E: "aglomerasi"
+        },
+        answer: "B",
+        explanation: "Lokasi relatif adalah letak suatu wilayah ditinjau dari kondisi geografis dan keberadaan wilayah lain di sekitarnya (seperti benua dan samudra), yang sifatnya strategis dan dinamis."
+      },
+      {
+        id: 12,
+        chapter: "Dasar Geografi",
+        tag: "Kisi-Kisi #12",
+        question: "Pendekatan geografi yang mengkaji perbedaan karakteristik suatu wilayah dengan wilayah lain serta interaksi keruangan antarwilayah untuk memenuhi kebutuhan masing-masing disebut pendekatan...",
+        options: {
+          A: "keruangan (spatial approach)",
+          B: "kelingkungan (ecological approach)",
+          C: "kompleks wilayah (regional complex approach)",
+          D: "kronologis (historical approach)",
+          E: "topografis (topographical approach)"
+        },
+        answer: "C",
+        explanation: "Pendekatan kompleks wilayah memadukan analisis keruangan dan kelingkungan untuk mengkaji perbedaan karakteristik antarwilayah (diferensiasi area) serta interaksi timbal balik di antara wilayah-wilayah tersebut."
+      },
+      {
+        id: 13,
+        chapter: "Dasar Geografi",
+        tag: "Kisi-Kisi #13",
+        question: "Wilayah dataran tinggi umumnya mengembangkan komoditas pertanian hortikultura seperti sayuran dan teh, sedangkan wilayah pesisir mengembangkan usaha perikanan tangkap dan tambak garam. Perbedaan corak aktivitas antarwilayah tersebut mencerminkan konsep esensial geografi berupa...",
+        options: {
+          A: "aglomerasi",
+          B: "diferensiasi area",
+          C: "keterjangkauan",
+          D: "jarak relatif",
+          E: "pola"
+        },
+        answer: "B",
+        explanation: "Diferensiasi area (perbedaan wilayah) menjelaskan bahwa setiap wilayah memiliki keunikan karakteristik fisik dan sosial yang berbeda sehingga menghasilkan corak aktivitas dan komoditas yang khas."
+      },
+      {
+        id: 14,
+        chapter: "Dasar Geografi",
+        tag: "Kisi-Kisi #14",
+        question: "Untuk menjelaskan fenomena sebaran titik panas (hotspot) kebakaran hutan di Pulau Sumatra dan Kalimantan, peneliti menyajikan uraian detail yang dilengkapi tabel luas lahan terbakar, grafik tren bulanan, serta peta sebaran wilayah terdampak. Prinsip geografi yang diterapkan dalam penyajian tersebut adalah prinsip...",
+        options: {
+          A: "distribusi",
+          B: "interelasi",
+          C: "deskripsi",
+          D: "korologi",
+          E: "kelingkungan"
+        },
+        answer: "C",
+        explanation: "Prinsip deskripsi berfungsi memberikan penjelasan atau gambaran lebih rinci mengenai suatu fenomena geosfer melalui tulisan, tabel, diagram, grafik, maupun peta."
+      },
+      {
+        id: 15,
+        chapter: "Dasar Geografi",
+        tag: "Kisi-Kisi #15",
+        question: "Pencemaran limbah cair pabrik tekstil ke aliran sungai menyebabkan matinya biota air dan menurunnya kualitas air bersih yang dikonsumsi warga di sekitar bantaran sungai. Untuk menganalisis hubungan sebab-akibat antara perilaku manusia dan kerusakan ekosistem tersebut, pendekatan geografi yang paling tepat digunakan adalah pendekatan...",
+        options: {
+          A: "keruangan",
+          B: "kelingkungan",
+          C: "kompleks wilayah",
+          D: "deskriptif",
+          E: "korologi"
+        },
+        answer: "B",
+        explanation: "Pendekatan kelingkungan (ekologi) berfokus pada interaksi timbal balik antara aktivitas manusia (pembuangan limbah pabrik) dengan lingkungan hidupnya (ekosistem sungai dan warga)."
+      },
+      {
+        id: 16,
+        chapter: "Peta & Pemetaan",
+        tag: "Kisi-Kisi #16",
+        question: "Sebuah peta perencanaan tata ruang tingkat kecamatan dibuat dengan menggunakan skala 1 : 25.000. Berdasarkan skalanya, peta tersebut diklasifikasikan sebagai peta...",
+        options: {
+          A: "kadaster",
+          B: "skala besar",
+          C: "skala sedang",
+          D: "skala kecil",
+          E: "geografis"
+        },
+        answer: "B",
+        explanation: "Klasifikasi peta berdasarkan skala: Kadaster (1:100 s.d. 1:5.000), Skala Besar (1:5.000 s.d. 1:250.000), Skala Sedang (1:250.000 s.d. 1:500.000), Skala Kecil (1:500.000 s.d. 1:1.000.000), dan Geografis (< 1:1.000.000). Skala 1:25.000 masuk kategori peta skala besar."
+      },
+      {
+        id: 17,
+        chapter: "Peta & Pemetaan",
+        tag: "Kisi-Kisi #17",
+        question: "Jarak antara Kecamatan A dan Kecamatan B pada sebuah peta yang berskala 1 : 150.000 terukur sepanjang 8 cm. Jarak sebenarnya antara kedua kecamatan tersebut adalah...",
+        options: {
+          A: "1,2 km",
+          B: "12 km",
+          C: "15 km",
+          D: "120 km",
+          E: "150 km"
+        },
+        answer: "B",
+        explanation: "Jarak Sebenarnya (Js) = Jarak Peta (Jp) × Penyebut Skala = 8 cm × 150.000 = 1.200.000 cm. Karena 1 km = 100.000 cm, maka 1.200.000 / 100.000 = 12 km."
+      },
+      {
+        id: 18,
+        chapter: "Penginderaan Jauh",
+        tag: "Kisi-Kisi #18",
+        question: "Perekaman permukaan bumi yang menggunakan sensor nonfotografik berupa penyiam (scanner) pada wahana satelit untuk mendeteksi variasi suhu permukaan laut menghasilkan...",
+        options: {
+          A: "foto udara pankromatik",
+          B: "foto udara ortokromatik",
+          C: "citra nonfoto inframerah termal",
+          D: "foto udara inframerah berwarna",
+          E: "foto udara ultraviolet"
+        },
+        answer: "C",
+        explanation: "Citra yang direkam menggunakan sensor nonfotografik (scanner) pada satelit dengan memanfaatkan pancaran panas/suhu objek disebut citra nonfoto inframerah termal."
+      },
+      {
+        id: 19,
+        chapter: "Penginderaan Jauh",
+        tag: "Kisi-Kisi #19",
+        question: "Pada sebuah citra foto udara pankromatik hitam putih, tubuh air sungai yang jernih tampak gelap, sedangkan atap bangunan pabrik yang terbuat dari seng tampak sangat cerah. Unsur interpretasi citra yang digunakan untuk membedakan kedua kenampakan tersebut adalah...",
+        options: {
+          A: "rona",
+          B: "tekstur",
+          C: "bayangan",
+          D: "asosiasi",
+          E: "situs"
+        },
+        answer: "A",
+        explanation: "Rona adalah tingkat kegelapan atau kecerahan suatu objek pada citra hitam-putih (pankromatik) akibat perbedaan daya pantul cahaya objek tersebut."
+      },
+      {
+        id: 20,
+        chapter: "SIG",
+        tag: "Kisi-Kisi #20",
+        question: "Data spasial dalam Sistem Informasi Geografis (SIG) yang disimpan dalam bentuk susunan sel-sel grid atau piksel dengan nilai koordinat dan atribut pada setiap selnya disebut data berformat...",
+        options: {
+          A: "vektor",
+          B: "raster",
+          C: "poligon",
+          D: "tabular",
+          E: "tekstual"
+        },
+        answer: "B",
+        explanation: "Data raster merepresentasikan permukaan bumi dalam susunan sel-sel matriks/grid (piksel), contohnya citra satelit dan foto udara digital."
+      },
+      {
+        id: 21,
+        chapter: "Peta & Pemetaan",
+        tag: "Kisi-Kisi #21",
+        question: "Pada sebuah peta wilayah, dua garis lintang yang memiliki selisih 2° tergambar dengan jarak 5 cm. Apabila 1° lintang di permukaan bumi setara dengan jarak 111 km, maka skala peta tersebut adalah...",
+        options: {
+          A: "1 : 444.000",
+          B: "1 : 2.220.000",
+          C: "1 : 4.440.000",
+          D: "1 : 5.550.000",
+          E: "1 : 22.200.000"
+        },
+        answer: "C",
+        explanation: "Selisih 2° lintang = 2 × 111 km = 222 km = 22.200.000 cm. Skala = Jp / Js = 5 cm / 22.200.000 cm = 1 / 4.440.000, sehingga skalanya adalah 1 : 4.440.000."
+      },
+      {
+        id: 22,
+        chapter: "Peta & Pemetaan",
+        tag: "Kisi-Kisi #22",
+        question: "Sebuah peta wilayah kabupaten berskala 1 : 200.000 memiliki luas 25 cm². Apabila peta tersebut diperbesar sehingga skalanya berubah menjadi 1 : 50.000, luas peta yang baru adalah...",
+        options: {
+          A: "100 cm²",
+          B: "200 cm²",
+          C: "300 cm²",
+          D: "400 cm²",
+          E: "625 cm²"
+        },
+        answer: "D",
+        explanation: "Faktor perbesaran linear (k) = Penyebut Skala Lama / Penyebut Skala Baru = 200.000 / 50.000 = 4 kali. Karena luas bersifat dua dimensi, Luas Baru = k² × Luas Lama = 4² × 25 cm² = 16 × 25 cm² = 400 cm²."
+      },
+      {
+        id: 23,
+        chapter: "Penginderaan Jauh",
+        tag: "Kisi-Kisi #23",
+        question: "Hasil pengamatan pada citra resolusi tinggi memperlihatkan deretan objek dengan tajuk berbentuk bintang, tinggi dan jarak tanam sangat seragam, berpola garis-garis lurus teratur, serta dilengkapi jaringan jalan setapak di antara blok-blok lahan. Berdasarkan unsur interpretasi citra tersebut, objek yang tergambar adalah...",
+        options: {
+          A: "hutan hujan tropis alami",
+          B: "perkebunan kelapa sawit",
+          C: "kawasan permukiman padat",
+          D: "rawa bakau pesisir",
+          E: "ladang pertanian tadah hujan"
+        },
+        answer: "B",
+        explanation: "Tajuk berbentuk bintang dengan tinggi seragam dan pola tanam teratur berjarak sama merupakan ciri khas interpretasi citra untuk perkebunan kelapa sawit."
+      },
+      {
+        id: 24,
+        chapter: "Penginderaan Jauh",
+        tag: "Kisi-Kisi #24",
+        question: "Dalam sistem penginderaan jauh, tidak semua spektrum gelombang elektromagnetik dari matahari dapat mencapai permukaan bumi karena sebagian diserap dan dihamburkan oleh gas serta partikel udara. Bagian spektrum elektromagnetik yang mampu menembus lapisan udara hingga mencapai objek di bumi disebut...",
+        options: {
+          A: "wahana antariksa",
+          B: "jendela atmosfer",
+          C: "sensor pasif",
+          D: "citra multispektral",
+          E: "tenaga pantulan"
+        },
+        answer: "B",
+        explanation: "Jendela atmosfer (atmospheric window) adalah bagian dari spektrum gelombang elektromagnetik yang dapat menembus lapisan atmosfer bumi tanpa terhambat signifikan oleh penyerapan maupun hamburan gas udara."
+      },
+      {
+        id: 25,
+        chapter: "Penginderaan Jauh",
+        tag: "Kisi-Kisi #25",
+        question: "Seorang analis citra mengidentifikasi sebuah kompleks bangunan berbentuk huruf U atau L sebagai gedung sekolah karena di bagian tengah atau depannya terdapat lapangan terbuka yang dilengkapi tiang bendera dan lapangan olahraga. Unsur interpretasi citra yang paling menentukan kesimpulan tersebut adalah...",
+        options: {
+          A: "rona",
+          B: "tekstur",
+          C: "bayangan",
+          D: "asosiasi",
+          E: "tinggi objek"
+        },
+        answer: "D",
+        explanation: "Asosiasi adalah keterkaitan atau hubungan keberadaan antara suatu objek dengan objek lain di sekitarnya yang menjadi ciri khas fungsi objek tersebut (sekolah berasosiasi dengan lapangan upacara dan tiang bendera)."
+      },
+      {
+        id: 26,
+        chapter: "SIG",
+        tag: "Kisi-Kisi #26",
+        question: "Badan Geologi menetapkan zona bahaya radius 5 kilometer dari pusat kawah gunung api aktif pada peta digital untuk memetakan kawasan yang harus dikosongkan saat status awas. Operasi analisis spasial dalam SIG yang digunakan untuk membuat zona radius tersebut adalah...",
+        options: {
+          A: "overlay",
+          B: "buffering",
+          C: "scoring",
+          D: "digitasi",
+          E: "klasifikasi"
+        },
+        answer: "B",
+        explanation: "Buffering adalah teknik analisis spasial SIG yang membentuk poligon zona penyangga dengan jarak atau radius tertentu di sekeliling fitur titik, garis, maupun area."
+      },
+      {
+        id: 27,
+        chapter: "SIG",
+        tag: "Kisi-Kisi #27",
+        question: "Dinas Pertanian menyusun peta kesesuaian lahan tanaman pangan melalui tahapan berikut: (1) mengumpulkan peta jenis tanah, kemiringan lereng, curah hujan, dan ketersediaan air; (2) memberikan bobot nilai pada setiap kelas parameter; (3) menggabungkan seluruh lapisan peta menjadi satu peta baru; (4) mengelompokkan hasil akhir menjadi kelas sangat sesuai, cukup sesuai, dan tidak sesuai. Operasi SIG yang dilakukan pada tahap (2) dan (3) secara berurutan adalah...",
+        options: {
+          A: "buffering dan query",
+          B: "scoring dan overlay",
+          C: "digitasi dan scanning",
+          D: "interpolasi dan buffering",
+          E: "kliping dan proyeksi"
+        },
+        answer: "B",
+        explanation: "Pemberian bobot nilai pada tiap kelas parameter disebut 'scoring', sedangkan penggabungan (tumpang susun) beberapa lapisan peta tematik menjadi satu peta baru disebut 'overlay'."
+      },
+      {
+        id: 28,
+        chapter: "Penginderaan Jauh",
+        tag: "Kisi-Kisi #28",
+        question: "Perbandingan citra satelit kawasan pantai utara Jawa pada tahun 2014 dan 2024 menunjukkan bahwa garis pantai bergeser ke arah daratan sejauh puluhan meter serta banyak tambak warga yang terendam air laut. Pemanfaatan penginderaan jauh pada kasus tersebut paling tepat diterapkan dalam bidang...",
+        options: {
+          A: "meteorologi dan klimatologi",
+          B: "kepesisiran dan kelautan",
+          C: "transportasi udara",
+          D: "geologi pertambangan",
+          E: "kependudukan dan demografi"
+        },
+        answer: "B",
+        explanation: "Pemantauan perubahan garis pantai (abrasi/akresi) dan genangan rob pada wilayah pesisir merupakan aplikasi utama penginderaan jauh di bidang kepesisiran dan kelautan."
+      },
+      {
+        id: 29,
+        chapter: "Peta & Pemetaan",
+        tag: "Kisi-Kisi #29",
+        question: "Pemetaan wilayah kutub memerlukan bidang proyeksi datar yang menyinggung titik kutub agar distorsi bentuk di sekitar wilayah tersebut sangat kecil. Berdasarkan bidang proyeksinya, jenis proyeksi yang digunakan adalah proyeksi...",
+        options: {
+          A: "silinder (cylindrical)",
+          B: "kerucut (conical)",
+          C: "azimutal (zenithal)",
+          D: "miring (oblique)",
+          E: "transversal"
+        },
+        answer: "C",
+        explanation: "Proyeksi azimutal (zenithal) menggunakan bidang datar sebagai bidang proyeksinya dan paling tepat digunakan untuk memetakan wilayah kutub dengan distorsi minimal."
+      },
+      {
+        id: 30,
+        chapter: "SIG",
+        tag: "Kisi-Kisi #30",
+        question: "Pemerintah kabupaten memanfaatkan data spasial berupa peta kemiringan lereng, peta jenis batuan, peta curah hujan, dan peta persebaran permukiman untuk mengantisipasi bencana gerakan tanah. Pemanfaatan SIG yang paling tepat berdasarkan data tersebut adalah...",
+        options: {
+          A: "mengukur kecepatan angin permukaan secara langsung setiap jam",
+          B: "memetakan zonasi tingkat kerawanan tanah longsor sebagai dasar relokasi permukiman",
+          C: "mengambil sampel batuan dasar di kedalaman lapisan mantel bumi",
+          D: "menghitung jumlah penduduk secara manual melalui sensus rumah tangga",
+          E: "menggantikan fungsi alat seismograf dalam mencatat getaran gempa bumi"
+        },
+        answer: "B",
+        explanation: "Tumpang susun (overlay) dan pembobotan parameter kemiringan lereng, jenis batuan, curah hujan, serta permukiman dalam SIG menghasilkan peta zonasi kerawanan tanah longsor sebagai dasar mitigasi dan tata ruang."
+      },
+      {
+        id: 31,
+        chapter: "Dasar Geografi",
+        tag: "Pengayaan #31",
+        question: "Bentuk planet bumi tidaklah bulat sempurna seperti bola, melainkan sedikit pepat di kedua kutubnya dan sedikit menggembung di bagian khatulistiwa akibat rotasi bumi. Dalam kajian hakikat geografi, bentuk bumi tersebut dikenal dengan istilah...",
+        options: {
+          A: "geosentris",
+          B: "oblate spheroid",
+          C: "elips sempurna",
+          D: "silinder datar",
+          E: "poligon terbuka"
+        },
+        answer: "B",
+        explanation: "Bentuk bumi yang pepat di kutub dan menggembung di ekuator/khatulistiwa disebut 'oblate spheroid' (geoid)."
+      },
+      {
+        id: 32,
+        chapter: "Dasar Geografi",
+        tag: "Pengayaan #32",
+        question: "Seorang peneliti mengkaji Provinsi Jawa Barat secara utuh dengan memadukan analisis bentang alam, iklim, jumlah penduduk, mata pencaharian, budaya lokal, hingga potensi wisatanya sebagai satu kesatuan wilayah. Kajian tersebut termasuk ke dalam ruang lingkup...",
+        options: {
+          A: "geografi fisik",
+          B: "geografi teknik",
+          C: "geografi regional",
+          D: "geografi sejarah",
+          E: "geografi politik"
+        },
+        answer: "C",
+        explanation: "Geografi regional (region = wilayah) mengkaji suatu wilayah tertentu secara menyeluruh dengan memadukan aspek fisik dan aspek sosial sebagai satu kesatuan."
+      },
+      {
+        id: 33,
+        chapter: "Dasar Geografi",
+        tag: "Pengayaan #33",
+        question: "Gunung api aktif di Indonesia banyak tersebar mengikuti jalur cincin api di Pulau Sumatra, Pulau Jawa, Bali, hingga Kepulauan Nusa Tenggara, sedangkan Pulau Kalimantan relatif bebas dari gunung api aktif. Pemahaman fenomena tersebut menerapkan prinsip geografi yaitu...",
+        options: {
+          A: "prinsip persebaran (distribusi)",
+          B: "prinsip deskripsi",
+          C: "prinsip korologi",
+          D: "prinsip interelasi",
+          E: "prinsip kronologi"
+        },
+        answer: "A",
+        explanation: "Prinsip persebaran (distribusi) menyoroti bahwa gejala dan fakta geografi tersebar tidak merata di permukaan bumi, sehingga dapat diketahui di mana saja fenomena tersebut berada."
+      },
+      {
+        id: 34,
+        chapter: "Dasar Geografi",
+        tag: "Pengayaan #34",
+        question: "Kemacetan lalu lintas di jalan utama Kota Bogor pada jam berangkat kerja dipetakan sebarannya di persimpangan pusat kota, dianalisis keterkaitannya dengan tingginya volume kendaraan komuter dari wilayah sekitar serta keterbatasan kapasitas jalan, dan disajikan secara menyeluruh dalam laporan tata kota. Prinsip geografi yang diterapkan adalah...",
+        options: {
+          A: "prinsip distribusi",
+          B: "prinsip interelasi",
+          C: "prinsip deskripsi",
+          D: "prinsip korologi",
+          E: "prinsip ekologi"
+        },
+        answer: "D",
+        explanation: "Prinsip korologi merupakan perpaduan dari prinsip persebaran, interelasi, dan deskripsi untuk menelaah suatu fenomena secara komprehensif dalam satu ruang wilayah."
+      },
+      {
+        id: 35,
+        chapter: "Dasar Geografi",
+        tag: "Pengayaan #35",
+        question: "Wilayah Puncak Bogor menghasilkan berbagai komoditas sayuran dataran tinggi, sementara wilayah Jakarta memiliki permintaan pangan tinggi tetapi minim lahan pertanian, sehingga terjadi arus pengiriman sayuran dari Puncak ke Jakarta setiap hari. Faktor utama pemicu interaksi antarruang tersebut adalah...",
+        options: {
+          A: "kesamaan karakteristik fisik kedua wilayah",
+          B: "perbedaan potensi sumber daya dan saling ketergantungan wilayah",
+          C: "isolasi geografis yang memutus jalur transportasi",
+          D: "rendahnya pertumbuhan penduduk perkotaan",
+          E: "tidak adanya perbedaan fungsi ruang antara desa dan kota"
+        },
+        answer: "B",
+        explanation: "Interaksi antarruang terjadi karena setiap ruang memiliki karakteristik dan potensi sumber daya yang berbeda sehingga menimbulkan kebutuhan saling melengkapi (regional complementarity)."
+      },
+      {
+        id: 36,
+        chapter: "Dasar Geografi",
+        tag: "Pengayaan #36",
+        question: "Transaksi belanja daring dari Bandung yang dikirimkan melalui jasa ekspedisi ke Bogor serta penyebaran berita dari Jakarta ke seluruh dunia melalui media sosial merupakan wujud interaksi antarruang dalam bentuk pergerakan...",
+        options: {
+          A: "manusia dan tenaga kerja",
+          B: "barang, jasa, dan informasi",
+          C: "batas administrasi dan topografi",
+          D: "lempeng tektonik dan atmosfer",
+          E: "iklim dan curah hujan"
+        },
+        answer: "B",
+        explanation: "Interaksi antarruang terwujud melalui mobilitas manusia, distribusi barang, pelayanan jasa (ekspedisi), serta arus informasi."
+      },
+      {
+        id: 37,
+        chapter: "Peta & Pemetaan",
+        tag: "Pengayaan #37",
+        question: "Peta jalur transmigrasi penduduk, peta perubahan garis pantai pesisir, dan peta perluasan area pertambangan merupakan contoh peta yang menggambarkan fenomena yang terus mengalami perubahan dari waktu ke waktu. Berdasarkan keadaan bentuknya, peta-peta tersebut tergolong...",
+        options: {
+          A: "peta stasioner",
+          B: "peta dinamik",
+          C: "peta kadaster",
+          D: "peta korografi",
+          E: "peta timbul"
+        },
+        answer: "B",
+        explanation: "Berdasarkan keadaan bentuk/sifat datanya, peta dinamik menggambarkan keadaan yang berubah-ubah (seperti aliran sungai, transmigrasi, perubahan garis pantai), sedangkan peta stasioner menggambarkan keadaan yang relatif stabil (seperti peta geologi dan batas wilayah)."
+      },
+      {
+        id: 38,
+        chapter: "Peta & Pemetaan",
+        tag: "Pengayaan #38",
+        question: "Sebuah peta tematik menyajikan persebaran jenis-jenis tanah (aluvial, latosol, andosol) dan variasi bahasa daerah di Indonesia tanpa mencantumkan perhitungan angka atau persentase jumlahnya. Berdasarkan jenis data statistiknya, peta tersebut termasuk...",
+        options: {
+          A: "peta statistik distribusi kuantitatif",
+          B: "peta statistik distribusi kualitatif",
+          C: "peta topografi skala besar",
+          D: "peta geografis umum",
+          E: "peta timbul tiga dimensi"
+        },
+        answer: "B",
+        explanation: "Peta statistik distribusi kualitatif menggambarkan kevariasian jenis atau mutu data (misalnya jenis tanah, agama, budaya) tanpa menghitung jumlah/angkanya."
+      },
+      {
+        id: 39,
+        chapter: "Peta & Pemetaan",
+        tag: "Pengayaan #39",
+        question: "Pada sebuah peta kabupaten berskala 1 : 250.000, diketahui jarak sebenarnya antara kantor kecamatan menuju terminal kabupaten di lapangan adalah 20 km. Berapakah jarak kedua tempat tersebut jika digambar pada peta?",
+        options: {
+          A: "4 cm",
+          B: "5 cm",
+          C: "8 cm",
+          D: "10 cm",
+          E: "12,5 cm"
+        },
+        answer: "C",
+        explanation: "Jarak Peta (Jp) = Skala × Jarak Sebenarnya (Js). Ubah 20 km ke cm = 2.000.000 cm. Maka Jp = (1 / 250.000) × 2.000.000 cm = 8 cm."
+      },
+      {
+        id: 40,
+        chapter: "Penginderaan Jauh",
+        tag: "Pengayaan #40",
+        question: "Perbedaan mendasar antara citra foto dan citra nonfoto dalam sistem penginderaan jauh terletak pada jenis sensor dan proses perekamannya, yaitu...",
+        options: {
+          A: "citra foto menggunakan satelit antariksa, sedangkan citra nonfoto hanya menggunakan balon udara",
+          B: "citra foto menggunakan sensor kamera dengan detektor film/digital optik, sedangkan citra nonfoto menggunakan sensor penyiam (scanner) dengan detektor pita magnetik/elektronik",
+          C: "citra foto tidak memerlukan sumber energi, sedangkan citra nonfoto selalu menggunakan cahaya matahari",
+          D: "citra foto menghasilkan rekaman termal suhu bumi, sedangkan citra nonfoto hanya menghasilkan gambar hitam putih",
+          E: "citra foto hanya merekam wilayah lautan, sedangkan citra nonfoto hanya merekam daratan"
+        },
+        answer: "B",
+        explanation: "Citra foto direkam secara optik menggunakan sensor kamera (detektor film/sensor kamera), sedangkan citra nonfoto direkam secara elektronik menggunakan sensor nonkamera seperti penyiam (scanner) atau antena radar."
+      },
+      {
+        id: 41,
+        chapter: "Penginderaan Jauh",
+        tag: "Pengayaan #41",
+        question: "Urutan tahapan kerja yang sistematis dalam melakukan interpretasi citra penginderaan jauh hingga menghasilkan kesimpulan jenis objek yang tepat adalah...",
+        options: {
+          A: "Deduksi → Analisis → Identifikasi → Deteksi",
+          B: "Identifikasi → Deteksi → Deduksi → Analisis",
+          C: "Deteksi → Identifikasi → Analisis → Deduksi",
+          D: "Analisis → Deteksi → Identifikasi → Deduksi",
+          E: "Deteksi → Deduksi → Analisis → Identifikasi"
+        },
+        answer: "C",
+        explanation: "Tahapan interpretasi citra dimulai dari Deteksi (pengenalan awal objek), Identifikasi (pencirian objek lewat rona/bentuk/tekstur), Analisis (penggalian ciri lebih mendalam), hingga Deduksi (penarikan kesimpulan akhir jenis objek)."
+      },
+      {
+        id: 42,
+        chapter: "Penginderaan Jauh",
+        tag: "Pengayaan #42",
+        question: "Citra penginderaan jauh nonfoto yang dibuat menggunakan spektrum gelombang mikro dengan sistem aktif—yakni memancarkan sumber tenaga buatan sendiri sehingga tetap mampu merekam permukaan bumi meskipun tertutup awan tebal atau pada malam hari—adalah...",
+        options: {
+          A: "citra foto ortokromatik",
+          B: "citra foto pankromatik",
+          C: "citra radar dan gelombang mikro",
+          D: "citra foto ultraviolet",
+          E: "citra satelit cuaca optik"
+        },
+        answer: "C",
+        explanation: "Citra radar memanfaatkan gelombang mikro dengan sistem sensor aktif (memancarkan sinyal sendiri), sehingga tidak bergantung pada sinar matahari dan mampu menembus tutupan awan."
+      },
+      {
+        id: 43,
+        chapter: "Penginderaan Jauh",
+        tag: "Pengayaan #43",
+        question: "Berdasarkan posisi sumbu kameranya saat melakukan pemotretan udara, foto udara yang dihasilkan ketika sumbu kamera diarahkan tegak lurus (90° atau toleransi kemiringan 1°–4°) terhadap permukaan bumi disebut...",
+        options: {
+          A: "citra foto condong (oblique)",
+          B: "citra foto sangat condong (high oblique)",
+          C: "citra foto tegak (vertical photograph)",
+          D: "citra foto multispektral",
+          E: "citra foto sudut sangat lebar"
+        },
+        answer: "C",
+        explanation: "Citra foto tegak (vertical photograph) dihasilkan saat sumbu kamera tegak lurus terhadap permukaan bumi, sehingga skala citra relatif seragam dan cocok untuk pemetaan."
+      },
+      {
+        id: 44,
+        chapter: "SIG",
+        tag: "Pengayaan #44",
+        question: "Dinas Perhubungan merencanakan rute bus pengumpan (feeder) tercepat dan paling efisien dari kawasan permukiman menuju stasiun kereta api dengan mempertimbangkan panjang ruas jalan, arah lalu lintas, dan lokasi halte. Teknik analisis spasial SIG yang paling sesuai digunakan adalah...",
+        options: {
+          A: "buffering",
+          B: "scoring",
+          C: "network analysis",
+          D: "interpolasi spasial",
+          E: "digitasi layar"
+        },
+        answer: "C",
+        explanation: "Network analysis (analisis jaringan) digunakan untuk menganalisis keterhubungan jaringan jalan, menentukan rute terpendek/tercepat, serta memetakan area jangkauan layanan fasilitas."
+      },
+      {
+        id: 45,
+        chapter: "SIG",
+        tag: "Pengayaan #45",
+        question: "Dalam basis data Sistem Informasi Geografis (SIG), informasi koordinat titik lokasi halte bus dan garis jaringan jalan digolongkan sebagai data spasial, sedangkan tabel yang memuat nama jalan, lebar jalan (meter), dan kapasitas penumpang disebut...",
+        options: {
+          A: "data raster",
+          B: "data atribut (nonspasial)",
+          C: "data citra pankromatik",
+          D: "data proyeksi azimutal",
+          E: "data jendela atmosfer"
+        },
+        answer: "B",
+        explanation: "Data atribut adalah data deskriptif (kualitatif maupun kuantitatif) dalam bentuk tabel yang menjelaskan karakteristik dari setiap objek spasial di peta."
+      }
+    ];
+
+    // APPLICATION STATE
+    let currentQuestions = JSON.parse(JSON.stringify(RAW_QUESTIONS));
+    let userAnswers = {};   // { qId: "A" }
+    let checkedState = {};  // { qId: true/false }
+    let filters = {
+      package: 'all', // 'all', 'kisi', 'pengayaan'
+      chapter: 'all'  // 'all', 'Dasar Geografi', 'Peta & Pemetaan', 'Penginderaan Jauh', 'SIG'
+    };
+
+    // INITIALIZATION
+    window.onload = function() {
+      renderNavigationGrid();
+      renderQuestions();
+      updateDashboardStats();
+    };
+
+    // RENDER NAVIGATION GRID (1 to 45)
+    function renderNavigationGrid() {
+      const navGrid = document.getElementById('nav-grid');
+      navGrid.innerHTML = '';
+
+      let count = 0;
+      RAW_QUESTIONS.forEach(q => {
+        // Apply current filter visibility to grid if needed, or show all 45
+        const isVisible = checkFilterMatch(q);
+        if (isVisible) count++;
+
+        const navBtn = document.createElement('button');
+        navBtn.className = 'nav-btn';
+        navBtn.id = `nav-btn-${q.id}`;
+        navBtn.innerText = q.id;
+
+        if (!isVisible) {
+          navBtn.style.opacity = '0.3';
+        }
+
+        // Apply state classes
+        if (checkedState[q.id]) {
+          if (userAnswers[q.id] === q.answer) {
+            navBtn.classList.add('correct');
+          } else {
+            navBtn.classList.add('incorrect');
+          }
+        } else if (userAnswers[q.id]) {
+          navBtn.classList.add('answered');
+        }
+
+        navBtn.onclick = () => scrollToQuestion(q.id);
+        navGrid.appendChild(navBtn);
+      });
+
+      document.getElementById('grid-count').innerText = `${count} Soal`;
+    }
+
+    // CHECK IF QUESTION MATCHES CURRENT ACTIVE FILTERS
+    function checkFilterMatch(q) {
+      if (filters.package === 'kisi' && q.id > 30) return false;
+      if (filters.package === 'pengayaan' && q.id <= 30) return false;
+      if (filters.chapter !== 'all' && q.chapter !== filters.chapter) return false;
+      return true;
+    }
+
+    // RENDER QUESTION CARDS
+    function renderQuestions() {
+      const container = document.getElementById('questions-container');
+      container.innerHTML = '';
+
+      let visibleCount = 0;
+
+      currentQuestions.forEach(q => {
+        if (!checkFilterMatch(q)) return;
+        visibleCount++;
+
+        const isChecked = checkedState[q.id] || false;
+        const selectedOpt = userAnswers[q.id] || null;
+
+        const card = document.createElement('div');
+        card.className = 'question-card';
+        card.id = `q-card-${q.id}`;
+
+        // Header Status Text
+        let statusHtml = '<span class="card-status unanswered">Belum Dijawab</span>';
+        if (isChecked) {
+          if (selectedOpt === q.answer) {
+            statusHtml = '<span class="card-status correct">✓ Jawaban Benar</span>';
+          } else {
+            statusHtml = '<span class="card-status incorrect">✕ Jawaban Salah</span>';
+          }
+        } else if (selectedOpt) {
+          statusHtml = '<span class="card-status answered">Disimpan (Belum Dicek)</span>';
+        }
+
+        // Badge Tag Class
+        const isKisi = q.id <= 30;
+        const tagClass = isKisi ? 'badge-kisi' : 'badge-pengayaan';
+
+        // Build Options HTML
+        let optionsHtml = '';
+        const optionKeys = ['A', 'B', 'C', 'D', 'E'];
+
+        optionKeys.forEach(key => {
+          if (!q.options[key]) return;
+          const optText = q.options[key];
+          const isSelected = selectedOpt === key;
+
+          let optionStateClass = '';
+          if (isChecked) {
+            if (key === q.answer) {
+              optionStateClass = 'state-correct';
+            } else if (isSelected && key !== q.answer) {
+              optionStateClass = 'state-wrong';
+            }
+          }
+
+          optionsHtml += `
+            <label class="option-item ${optionStateClass}" onclick="selectAnswer(${q.id}, '${key}')">
+              <input type="radio" name="question_${q.id}" value="${key}" ${isSelected ? 'checked' : ''} ${isChecked ? 'disabled' : ''}>
+              <span class="option-key">${key}.</span>
+              <span class="option-text">${escapeHtml(optText)}</span>
+            </label>
+          `;
+        });
+
+        // Card Template
+        card.innerHTML = `
+          <div class="card-header">
+            <div class="badges">
+              <span class="badge badge-number">Soal #${q.id}</span>
+              <span class="badge badge-chapter">${q.chapter}</span>
+              <span class="badge ${tagClass}">${q.tag}</span>
+            </div>
+            <div>${statusHtml}</div>
+          </div>
+
+          <div class="question-text">${escapeHtml(q.question)}</div>
+
+          <div class="options-list">
+            ${optionsHtml}
+          </div>
+
+          <div class="card-actions">
+            <button class="btn btn-primary" onclick="checkSingleAnswer(${q.id})">Cek Jawaban</button>
+            <button class="btn btn-secondary" onclick="resetSingleAnswer(${q.id})">Ulangi Soal Ini</button>
+          </div>
+
+          <div class="explanation-box" id="exp-${q.id}" style="display: ${isChecked ? 'block' : 'none'};">
+            <div class="explanation-title">💡 Kunci Jawaban & Pembahasan (${q.answer})</div>
+            <div class="explanation-body">${escapeHtml(q.explanation)}</div>
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+
+      if (visibleCount === 0) {
+        container.innerHTML = `
+          <div class="empty-state panel">
+            <h3>Tidak ada soal yang cocok dengan filter.</h3>
+            <p style="margin-top: 8px;">Coba ubah kombinasi filter bab atau kategori soal.</p>
+          </div>
+        `;
+      }
+    }
+
+    // USER ACTIONS
+    function selectAnswer(qId, key) {
+      if (checkedState[qId]) return; // locked if checked
+      userAnswers[qId] = key;
+
+      // Update nav grid state
+      const navBtn = document.getElementById(`nav-btn-${qId}`);
+      if (navBtn) navBtn.classList.add('answered');
+
+      // Update status text on card
+      const card = document.getElementById(`q-card-${qId}`);
+      if (card) {
+        const statusElem = card.querySelector('.card-header div:last-child');
+        if (statusElem) statusElem.innerHTML = '<span class="card-status answered">Disimpan (Belum Dicek)</span>';
+      }
+
+      updateDashboardStats();
+    }
+
+    function checkSingleAnswer(qId) {
+      if (!userAnswers[qId]) {
+        showToast("Pilih salah satu jawaban terlebih dahulu!");
+        return;
+      }
+
+      checkedState[qId] = true;
+      renderQuestions();
+      renderNavigationGrid();
+      updateDashboardStats();
+
+      // Scroll to explanation box smoothly
+      const expBox = document.getElementById(`exp-${qId}`);
+      if (expBox) {
+        expBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+
+    function resetSingleAnswer(qId) {
+      delete userAnswers[qId];
+      delete checkedState[qId];
+      renderQuestions();
+      renderNavigationGrid();
+      updateDashboardStats();
+      showToast(`Soal #${qId} telah direset.`);
+    }
+
+    function checkAllAnswers() {
+      const totalAnswered = Object.keys(userAnswers).length;
+      if (totalAnswered === 0) {
+        showToast("Belum ada soal yang dijawab!");
+        return;
+      }
+
+      // Mark all answered questions as checked
+      RAW_QUESTIONS.forEach(q => {
+        if (userAnswers[q.id]) {
+          checkedState[q.id] = true;
+        }
+      });
+
+      renderQuestions();
+      renderNavigationGrid();
+      updateDashboardStats();
+      openModalAnalysis();
+    }
+
+    function confirmResetAll() {
+      if (Object.keys(userAnswers).length === 0 && Object.keys(checkedState).length === 0) {
+        showToast("Semua lembar jawab sudah bersih.");
+        return;
+      }
+      
+      userAnswers = {};
+      checkedState = {};
+      renderQuestions();
+      renderNavigationGrid();
+      updateDashboardStats();
+      showToast("Seluruh jawaban berhasil direset ke nol!");
+    }
+
+    function shuffleQuestionsAndOptions() {
+      // Shuffle question cards array order
+      currentQuestions = shuffleArray([...currentQuestions]);
+
+      // Shuffle options inside each question
+      currentQuestions.forEach(q => {
+        const keys = ['A', 'B', 'C', 'D', 'E'].filter(k => q.options[k]);
+        const shuffledKeys = shuffleArray([...keys]);
+        
+        // Re-map options and find new correct answer key
+        const newOptions = {};
+        let newAnswerKey = q.answer;
+
+        const originalCorrectText = q.options[q.answer];
+
+        keys.forEach((origKey, index) => {
+          const targetKey = shuffledKeys[index];
+          newOptions[targetKey] = q.options[origKey];
+        });
+
+        // Find which new key holds originalCorrectText
+        Object.keys(newOptions).forEach(k => {
+          if (newOptions[k] === originalCorrectText) {
+            newAnswerKey = k;
+          }
+        });
+
+        q.options = newOptions;
+        q.answer = newAnswerKey;
+      });
+
+      renderQuestions();
+      showToast("Soal & opsi pilihan telah diacak!");
+    }
+
+    // UTILITY SHUFFLE
+    function shuffleArray(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    // UPDATE DASHBOARD REAL-TIME STATS
+    function updateDashboardStats() {
+      const totalAnswered = Object.keys(userAnswers).length;
+      
+      let correctCount = 0;
+      let wrongCount = 0;
+
+      RAW_QUESTIONS.forEach(q => {
+        if (checkedState[q.id]) {
+          if (userAnswers[q.id] === q.answer) {
+            correctCount++;
+          } else {
+            wrongCount++;
+          }
+        }
+      });
+
+      // Calculate score scaled 0-100 based on total 45 questions
+      const score = ((correctCount / RAW_QUESTIONS.length) * 100).toFixed(1);
+
+      document.getElementById('stat-answered').innerText = `${totalAnswered} / ${RAW_QUESTIONS.length}`;
+      document.getElementById('stat-correct').innerText = correctCount;
+      document.getElementById('stat-wrong').innerText = wrongCount;
+      document.getElementById('stat-score').innerText = score;
+    }
+
+    // FILTER LOGIC
+    function setFilter(type, value, btnElem) {
+      filters[type] = value;
+
+      // Update active button state in group
+      const parent = btnElem.parentElement;
+      const btns = parent.querySelectorAll('.btn-filter');
+      btns.forEach(b => b.classList.remove('active'));
+      btnElem.classList.add('active');
+
+      renderQuestions();
+      renderNavigationGrid();
+    }
+
+    // SCROLL TO QUESTION CARD
+    function scrollToQuestion(qId) {
+      // Ensure filter doesn't hide it
+      const q = RAW_QUESTIONS.find(item => item.id === qId);
+      if (q && !checkFilterMatch(q)) {
+        // Reset filters if navigating to hidden question
+        filters.package = 'all';
+        filters.chapter = 'all';
+        document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.filter-buttons').forEach(fb => fb.children[0].classList.add('active'));
+        renderQuestions();
+        renderNavigationGrid();
+      }
+
+      const card = document.getElementById(`q-card-${qId}`);
+      if (card) {
+        card.scrollIntoView({ behavior: 'smooth' });
+        
+        // Highlight active nav
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active-current'));
+        const navBtn = document.getElementById(`nav-btn-${qId}`);
+        if (navBtn) navBtn.classList.add('active-current');
+      }
+    }
+
+    // MODAL ANALYSIS
+    function openModalAnalysis() {
+      const modal = document.getElementById('result-modal');
+      
+      let correctCount = 0;
+      let wrongCount = 0;
+
+      // Chapter breakdown object
+      const chapterStats = {
+        "Dasar Geografi": { total: 0, correct: 0 },
+        "Peta & Pemetaan": { total: 0, correct: 0 },
+        "Penginderaan Jauh": { total: 0, correct: 0 },
+        "SIG": { total: 0, correct: 0 }
+      };
+
+      RAW_QUESTIONS.forEach(q => {
+        if (chapterStats[q.chapter]) chapterStats[q.chapter].total++;
+
+        if (checkedState[q.id]) {
+          if (userAnswers[q.id] === q.answer) {
+            correctCount++;
+            if (chapterStats[q.chapter]) chapterStats[q.chapter].correct++;
+          } else {
+            wrongCount++;
+          }
+        }
+      });
+
+      const unansweredCount = RAW_QUESTIONS.length - (correctCount + wrongCount);
+      const scoreNum = Math.round((correctCount / RAW_QUESTIONS.length) * 100);
+
+      document.getElementById('modal-score-num').innerText = scoreNum;
+      document.getElementById('modal-correct').innerText = correctCount;
+      document.getElementById('modal-wrong').innerText = wrongCount;
+      document.getElementById('modal-unanswered').innerText = unansweredCount;
+
+      // Render Chapter Progress Bars
+      const listContainer = document.getElementById('chapter-analysis-list');
+      listContainer.innerHTML = '';
+
+      Object.keys(chapterStats).forEach(chName => {
+        const stat = chapterStats[chName];
+        const pct = stat.total > 0 ? Math.round((stat.correct / stat.total) * 100) : 0;
+
+        const item = document.createElement('div');
+        item.className = 'chapter-bar-item';
+        item.innerHTML = `
+          <div class="chapter-bar-label">
+            <span>${chName}</span>
+            <span style="font-weight: 700;">${stat.correct} / ${stat.total} (${pct}%)</span>
+          </div>
+          <div class="progress-bg">
+            <div class="progress-fill" style="width: ${pct}%;"></div>
+          </div>
+        `;
+        listContainer.appendChild(item);
+      });
+
+      modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('result-modal').style.display = 'none';
+    }
+
+    // TOAST NOTIFICATION UTILITY
+    function showToast(msg) {
+      const toast = document.getElementById('toast-msg');
+      toast.innerText = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    // HELPER: ESCAPE HTML TO PREVENT FORMAT BREAKAGE
+    function escapeHtml(text) {
+      return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+  </script>
+</body>
+</html>
